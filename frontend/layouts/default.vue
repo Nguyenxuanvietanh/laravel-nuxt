@@ -9,32 +9,30 @@
         <a class="navbar-item" href="/">
           <img src="~assets/buefy.png" alt="Buefy" height="28" />
         </a>
-        <template  v-if="isLoggedIn">
+        <template v-if="isLoggedIn">
+          <NuxtLink class="navbar-item" :to="{ name: 'staff-secret' }"
+            >Secret Page</NuxtLink
+          >
+          <a
+            aria-current="page"
+            @click="logout"
+            class="navbar-item nuxt-link-exact-active nuxt-link-active"
+          >
+            Logout
+          </a>
+        </template>
+        <template v-else>
+          <NuxtLink class="navbar-item" :to="{ name: 'staff-login' }">
+            Login
+          </NuxtLink>
+          <NuxtLink class="navbar-item" :to="{ name: 'staff-register' }">
+            Register
+          </NuxtLink>
+        </template>
 
+        <div>
 
-
-             <NuxtLink class="navbar-item" :to="{name: 'staff-secret'}">Secret Page</NuxtLink>
-<!-- <NuxtLink class="navbar-item" @click="logout" >Logout</NuxtLink> -->
-<a aria-current="page" @click="logout" class="navbar-item nuxt-link-exact-active nuxt-link-active">
-             Logout
-            </a>
-       </template>
-          <template  v-else>
-<NuxtLink class="navbar-item" :to="{name: 'staff-login'}">
-             Login
-            </NuxtLink>
-            <NuxtLink class="navbar-item" :to="{name: 'staff-register'}" >
-             Register
-            </NuxtLink>
-
-  </template>
-
-
-          <div>
-                 <!-- <NuxtLink class="navbar-item" @click="logout">Logout</NuxtLink> -->
-
-                 <!-- <NuxtLink class="navbar-item" :to="{name: 'staff-secret'}">Secret Page</NuxtLink> -->
-            </div>
+        </div>
         <div class="navbar-burger">
           <span />
           <span />
@@ -69,21 +67,12 @@
                   :icon="props.expanded ? 'menu-up' : 'menu-down'"
                 ></b-icon>
               </template>
-              <b-menu-item icon="cellphone-link">
-                <template #label>
-                  Basic Location
-                  <b-dropdown
-                    aria-role="list"
-                    class="is-pulled-right"
-                    position="is-bottom-left"
-                  >
-                  </b-dropdown>
-                </template>
-              </b-menu-item>
-              <b-menu-item
-                icon="cash-multiple"
-                label="Add item"
-              ></b-menu-item>
+              <NuxtLink class="navbar-item" :to="{ name: 'trolley-basic' }">
+              <b-menu-item icon="cellphone-link" label="Basic Location"></b-menu-item>
+              </NuxtLink>
+              <NuxtLink class="navbar-item" :to="{ name: 'trolley-create' }">
+              <b-menu-item icon="cash-multiple" label="Add item"></b-menu-item>
+              </NuxtLink>
             </b-menu-item>
             <b-menu-item icon="account" label="My Account">
               <b-menu-item label="Account data"></b-menu-item>
@@ -108,51 +97,32 @@ export default {
   data() {
     return {
       labelPosition: "on-border",
-      items: [
-        {
-          title: "Home",
-          icon: "home",
-          to: { name: "index" },
-        },
-        {
-          title: "Trolley",
-          icon: "lightbulb",
-          to: { name: "staff-trolley" },
-        },
-        {
-          title: "Location",
-          icon: "lightbulb",
-          to: { name: "trolley-basic" },
-        },
-      ],
     };
   },
 
-   computed: {
-      isLoggedIn() {
-        console.log("isLoggedIn");
-console.log(this.$store.state.token);
-        return this.$cookies.get('x-access-token');
-      },
-      filteredDataArray() {
-                return this.data.filter(option => {
-                return (
-                    option.user.first_name
-                        .toString()
-                        .toLowerCase()
-                        .indexOf(this.name.toLowerCase()) >= 0
-                )
-            })
-      }
+  computed: {
+    isLoggedIn() {
+      return this.$cookies.get("x-access-token");
     },
-      methods: {
-      logout() {
-        this.$store.dispatch('logout');
-        this.$router.push({name: 'staff-login'});
-        location.reload();
-      }
-    }
-}
+    filteredDataArray() {
+      return this.data.filter((option) => {
+        return (
+          option.user.first_name
+            .toString()
+            .toLowerCase()
+            .indexOf(this.name.toLowerCase()) >= 0
+        );
+      });
+    },
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+      this.$router.push({ name: "staff-login" });
+      location.reload();
+    },
+  },
+};
 </script>
 <style>
 .wrap-search {

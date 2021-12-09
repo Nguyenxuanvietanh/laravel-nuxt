@@ -23,8 +23,6 @@
         </b-field>
     <b-button type="is-primary" @click="login">Login</b-button>
     </section>
-
-
   </div>
 </template>
 
