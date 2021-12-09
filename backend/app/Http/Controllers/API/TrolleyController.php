@@ -87,7 +87,7 @@ class TrolleyController extends BaseController
      */
     public function basicLocation()
     {
-        $basic_location     = $this->trolleyService->basicLocation();
+        $response     = $this->trolleyService->basicLocation();
     
         return $this->sendResponse($response, 'Trolleys retrieved successfully.');
     }
@@ -121,5 +121,16 @@ class TrolleyController extends BaseController
         $response                   = $this->trolleyService->postCurrentLocation($params);
     
         return $this->sendResponse($response);
+    }
+
+    /**
+     * Post basic location.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteBasicLocation($slug)
+    {
+        $response = $this->trolleyService->deleteBasicLocation($slug);
+        return $this->sendResponse($response, 'Trolley retrieved successfully.');
     }
 }

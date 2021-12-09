@@ -20,13 +20,7 @@ use App\Http\Controllers\API\TrolleyController;
 
 Route::post('register', [RegisterController::class, 'register'])->name('register');
 Route::post('login', [RegisterController::class, 'login'])->name('login');
-// Route::get('login', function () {
-//     //
-//     echo '<pre>';
-//     print_r("hêre api");
-//     echo '</pre>';
-//     exit();
-// });
+
 Route::middleware('auth:api')->group( function () {
     Route::resource('products', ProductController::class);
 
@@ -36,6 +30,7 @@ Route::middleware('auth:api')->group( function () {
     Route::get('current_location/{slug}', [TrolleyController::class, 'itemCurrentLocation'])->name('get_item_current_location');
     Route::get('basic_location', [TrolleyController::class, 'basicLocation'])->name('get_basic_location');
     Route::get('basic_location/{slug}', [TrolleyController::class, 'itemBasicLocation']);
+    Route::delete('basic_location/{slug}', [TrolleyController::class, 'deleteBasicLocation']);
 
     Route::post('current_location', [TrolleyController::class, 'postCurrentLocation'])->name('post_current_location');
     Route::post('basic_location', [TrolleyController::class, 'postBasicLocation'])->name('post_basic_location');
