@@ -177,8 +177,10 @@ export default {
       ]
     }
   },
+
    computed: {
       isLoggedIn() {
+
         return this.$store.state.token;
       },
       filteredDataArray() {
@@ -194,15 +196,8 @@ export default {
     },
       methods: {
       logout() {
-        this.$axios.$post('logout')
-          .then(resp => {
-            this.$store.dispatch('logout');
-            this.$router.push({name: 'staff-login'});
-
-          })
-          .catch(errors => {
-            console.dir(errors);
-          });
+        this.$store.dispatch('logout');
+        this.$router.push({name: 'staff-login'});
       }
     }
 }
