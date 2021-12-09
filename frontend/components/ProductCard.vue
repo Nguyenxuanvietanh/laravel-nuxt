@@ -22,9 +22,12 @@
     </b-row>
   </b-card> -->
 
-  <card title="trolley.slug" icon="alert-decagram">
-         {{ trolley.current_location }}
-      </card>
+
+      <div class="column" @click="detail(trolley.slug)"><div class="card"><header class="card-header"><p class="card-header-title has-text-grey">
+       {{trolley.slug}}
+      </p></header> <div class="card-content"><div class="content has-text-centered"><span class="icon has-text-primary is-large"><i class="mdi mdi-alert-decagram mdi-48px"></i></span></div></div> <footer class="card-footer"><div class="card-footer-item"><span>
+        {{ trolley.current_location }}
+    </span></div></footer></div></div>
 
 </template>
 
@@ -41,12 +44,18 @@ export default {
     };
   },
   methods: {
-  selectPosition(){
-       this.$emit("update-position", {
-         "slug":this.trolley.slug,
-         "current_location": this.trolley.current_location,
-       });
-  }
+    selectPosition(){
+        this.$emit("update-position", {
+          "slug":this.trolley.slug,
+          "current_location": this.trolley.current_location,
+        });
+    },
+    detail(slug){
+      console.log("detail");
+      this.$router.push({
+          path: `/trolley/${slug}`,
+      });
+    }
   }
 };
 </script>
