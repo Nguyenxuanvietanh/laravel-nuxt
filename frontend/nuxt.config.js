@@ -54,7 +54,8 @@ export default {
     'nuxt-buefy',
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
-    '@nuxtjs/proxy'
+    '@nuxtjs/proxy',
+    'cookie-universal-nuxt',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

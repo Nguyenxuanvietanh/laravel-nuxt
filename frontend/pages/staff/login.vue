@@ -42,8 +42,8 @@
       login() {
         this.$axios.$post('/api/login', this.form)
           .then((res) => {
-            this.$store.dispatch('setToken', {token: res.data.token,expiresIn:6000 });
-            this.$router.push({name: 'staff-secret'});
+            this.$store.dispatch('setToken', {token: res.data.token,expiresIn:600 });
+            this.$router.push({name: 'index'});
           })
           .catch(errors => {
             console.dir(errors);

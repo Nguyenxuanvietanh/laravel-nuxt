@@ -9,13 +9,32 @@
         <a class="navbar-item" href="/">
           <img src="~assets/buefy.png" alt="Buefy" height="28" />
         </a>
-        <NuxtLink class="navbar-item" :to="{ name: 'staff-login' }">
-          Login
-        </NuxtLink>
-        <NuxtLink class="navbar-item" :to="{ name: 'staff-register' }">
-          Register
-        </NuxtLink>
-        <div></div>
+        <template  v-if="isLoggedIn">
+
+
+
+             <NuxtLink class="navbar-item" :to="{name: 'staff-secret'}">Secret Page</NuxtLink>
+<!-- <NuxtLink class="navbar-item" @click="logout" >Logout</NuxtLink> -->
+<a aria-current="page" @click="logout" class="navbar-item nuxt-link-exact-active nuxt-link-active">
+             Logout
+            </a>
+       </template>
+          <template  v-else>
+<NuxtLink class="navbar-item" :to="{name: 'staff-login'}">
+             Login
+            </NuxtLink>
+            <NuxtLink class="navbar-item" :to="{name: 'staff-register'}" >
+             Register
+            </NuxtLink>
+
+  </template>
+
+
+          <div>
+                 <!-- <NuxtLink class="navbar-item" @click="logout">Logout</NuxtLink> -->
+
+                 <!-- <NuxtLink class="navbar-item" :to="{name: 'staff-secret'}">Secret Page</NuxtLink> -->
+            </div>
         <div class="navbar-burger">
           <span />
           <span />
@@ -108,25 +127,32 @@ export default {
       ],
     };
   },
-  computed: {
-    isLoggedIn() {
-      return this.$store.state.token;
+
+   computed: {
+      isLoggedIn() {
+        console.log("isLoggedIn");
+console.log(this.$store.state.token);
+        return this.$cookies.get('x-access-token');
+      },
+      filteredDataArray() {
+                return this.data.filter(option => {
+                return (
+                    option.user.first_name
+                        .toString()
+                        .toLowerCase()
+                        .indexOf(this.name.toLowerCase()) >= 0
+                )
+            })
+      }
     },
-  },
-  methods: {
-    logout() {
-      this.$axios
-        .$post("logout")
-        .then((resp) => {
-          this.$store.dispatch("logout");
-          this.$router.push("/");
-        })
-        .catch((errors) => {
-          console.dir(errors);
-        });
-    },
-  },
-};
+      methods: {
+      logout() {
+        this.$store.dispatch('logout');
+        this.$router.push({name: 'staff-login'});
+        location.reload();
+      }
+    }
+}
 </script>
 <style>
 .wrap-search {
