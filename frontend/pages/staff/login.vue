@@ -46,7 +46,7 @@
           .then((res) => {
 console.log(res);
             this.$store.dispatch('setToken', {token: res.data.token,expiresIn:60 });
-            this.$router.push({name: 'staff-secret'});
+            this.$router.push({name: 'index'});
           })
           .catch(errors => {
             console.dir(errors);

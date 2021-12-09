@@ -16,12 +16,27 @@
             height="28"
           >
         </a>
-                 <NuxtLink class="navbar-item" :to="{name: 'staff-login'}">
+        <template  v-if="isLoggedIn">
+
+
+
+             <NuxtLink class="navbar-item" :to="{name: 'staff-secret'}">Secret Page</NuxtLink>
+<!-- <NuxtLink class="navbar-item" @click="logout" >Logout</NuxtLink> -->
+<a aria-current="page" @click="logout" class="navbar-item nuxt-link-exact-active nuxt-link-active">
+             Logout
+            </a>
+       </template>
+          <template  v-else>
+<NuxtLink class="navbar-item" :to="{name: 'staff-login'}">
              Login
             </NuxtLink>
-          <NuxtLink class="navbar-item" :to="{name: 'staff-register'}">
+            <NuxtLink class="navbar-item" :to="{name: 'staff-register'}" >
              Register
             </NuxtLink>
+
+  </template>
+
+
           <div>
                  <!-- <NuxtLink class="navbar-item" @click="logout">Logout</NuxtLink> -->
 
@@ -182,7 +197,8 @@ export default {
         this.$axios.$post('logout')
           .then(resp => {
             this.$store.dispatch('logout');
-            this.$router.push('/');
+            this.$router.push({name: 'staff-login'});
+
           })
           .catch(errors => {
             console.dir(errors);
