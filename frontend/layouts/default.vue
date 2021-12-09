@@ -16,13 +16,39 @@
             height="28"
           >
         </a>
+                 <NuxtLink class="navbar-item" :to="{name: 'staff-login'}">
+             Login
+            </NuxtLink>
+          <NuxtLink class="navbar-item" :to="{name: 'staff-register'}">
+             Register
+            </NuxtLink>
+          <div>
+                 <!-- <NuxtLink class="navbar-item" @click="logout">Logout</NuxtLink> -->
 
+                 <!-- <NuxtLink class="navbar-item" :to="{name: 'staff-secret'}">Secret Page</NuxtLink> -->
+            </div>
         <div class="navbar-burger">
           <span />
           <span />
           <span />
         </div>
       </div>
+        <section class="wrap-search">
+
+
+        <b-field label="">
+            <b-autocomplete
+                rounded
+                v-model="name"
+                :data="filteredDataArray"
+                placeholder="e.g. jQuery"
+                icon="magnify"
+                clearable
+                @select="option => selected = option">
+                <template #empty>No results found</template>
+            </b-autocomplete>
+        </b-field>
+    </section>
     </nav>
 
     <section class="main-content columns">
@@ -54,8 +80,10 @@
 
 <script>
 export default {
+
   data () {
     return {
+      labelPosition: 'on-border',
       items: [
         {
           title: 'Home',
@@ -69,6 +97,31 @@ export default {
         }
       ]
     }
-  }
+  },
+   computed: {
+      isLoggedIn() {
+        return this.$store.state.token;
+      }
+    },
+      methods: {
+      logout() {
+        this.$axios.$post('logout')
+          .then(resp => {
+            this.$store.dispatch('logout');
+            this.$router.push('/');
+          })
+          .catch(errors => {
+            console.dir(errors);
+          });
+      }
+    }
 }
 </script>
+<style>
+.wrap-search{
+  position: absolute;
+    right: 0px;
+    margin-right: 15px;
+    top: 5px;
+}
+</style>

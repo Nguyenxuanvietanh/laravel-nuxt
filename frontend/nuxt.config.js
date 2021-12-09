@@ -30,7 +30,13 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
   ],
-
+  axios: {
+    baseURL: 'http://enuxt.local/api/',
+    credentials: true, // this says that in the request the httponly cookie should be sent
+  },
+  router: {
+    // middleware: 'refreshToken',
+  },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/buefy
