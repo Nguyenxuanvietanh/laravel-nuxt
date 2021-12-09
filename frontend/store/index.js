@@ -30,7 +30,7 @@ export const actions = {
 
   logout({commit}) {
     this.$axios.setToken(false);
-    cookies.remove('x-access-token');
+    this.$cookies.remove('x-access-token');
     commit('REMOVE_TOKEN');
   }
 };

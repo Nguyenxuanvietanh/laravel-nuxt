@@ -180,8 +180,9 @@ export default {
 
    computed: {
       isLoggedIn() {
-
-        return this.$store.state.token;
+        console.log("isLoggedIn");
+console.log(this.$store.state.token);
+        return this.$cookies.get('x-access-token');
       },
       filteredDataArray() {
                 return this.data.filter(option => {
@@ -198,6 +199,7 @@ export default {
       logout() {
         this.$store.dispatch('logout');
         this.$router.push({name: 'staff-login'});
+        location.reload();
       }
     }
 }
