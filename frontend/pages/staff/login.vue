@@ -42,10 +42,11 @@
       login() {
         console.log("login:");
         console.log(this.form);
-        this.$axios.$post('login', this.form)
-          .then(({token, expiresIn}) => {
-            this.$store.dispatch('setToken', {token, expiresIn});
-            this.$router.push({name: 'secret'});
+        this.$axios.$post('/api/login', this.form)
+          .then((res) => {
+console.log(res);
+            this.$store.dispatch('setToken', {token: res.data.token,expiresIn:60 });
+            this.$router.push({name: 'staff-secret'});
           })
           .catch(errors => {
             console.dir(errors);

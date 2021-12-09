@@ -20,7 +20,13 @@ use App\Http\Controllers\API\TrolleyController;
 
 Route::post('register', [RegisterController::class, 'register'])->name('register');
 Route::post('login', [RegisterController::class, 'login'])->name('login');
-     
+// Route::get('login', function () {
+//     //
+//     echo '<pre>';
+//     print_r("hêre api");
+//     echo '</pre>';
+//     exit();
+// });
 Route::middleware('auth:api')->group( function () {
     Route::resource('products', ProductController::class);
 

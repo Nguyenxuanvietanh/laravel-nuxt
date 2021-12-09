@@ -31,21 +31,34 @@ export default {
   buildModules: [
   ],
   axios: {
-    baseURL: 'http://enuxt.local/api/',
+    // baseURL: 'http://enuxt.local/api/',
     credentials: true, // this says that in the request the httponly cookie should be sent
+    proxy: true,
+
   },
+  proxy: {
+      '/api/login':
+      { target: 'http://enuxt.local/api/login',pathRewrite: {'^/api/login': ''},  changeOrigin: true },
+      '/api/register':
+      { target: 'http://enuxt.local/api/register',pathRewrite: {'^/api/register': ''},  changeOrigin: true }
+  },
+
   router: {
-    // middleware: 'refreshToken',
+    middleware: 'refreshToken',
   },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/buefy
     'nuxt-buefy',
     '@nuxtjs/axios',
-    '@nuxtjs/auth-next'
+    '@nuxtjs/auth-next',
+    '@nuxtjs/proxy'
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+  server: {
+    port: 8000 // default: 3000
   }
 }

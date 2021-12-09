@@ -61,14 +61,14 @@
     },
     methods: {
       register() {
-        this.$axios.$post('register', this.form)
+        this.$axios.$post('api/register', this.form)
           .then(({success, data, message}) => {
-            console.log("register");
-console.log(success);
-console.log(data);
-console.log(message);
-            this.$store.dispatch('setToken', {token, expiresIn});
-            this.$router.push({name: 'secret'});
+
+if(success === true){
+    this.$store.dispatch('setToken', {token:data.token , expiresIn:60});
+    this.$router.push({name: 'staff-secret'});
+}
+
           })
           .catch(errors => {
             console.dir(errors);

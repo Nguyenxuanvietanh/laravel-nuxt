@@ -16,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('ax/login', function () {
+    //
+    echo '<pre>';
+    print_r("hêre");
+    echo '</pre>';
+    exit();
+});
