@@ -37,9 +37,11 @@ export default {
   },
   proxy: {
       '/api/login':
-      { target: 'http://enuxt.local/api/login',pathRewrite: {'^/api/login': ''},  changeOrigin: true },
+      { target: 'http://nuxt-api.local:8888/api/login',pathRewrite: {'^/api/login': ''},  changeOrigin: true },
       '/api/register':
-      { target: 'http://enuxt.local/api/register',pathRewrite: {'^/api/register': ''},  changeOrigin: true }
+      { target: 'http://nuxt-api.local:8888/api/register',pathRewrite: {'^/api/register': ''},  changeOrigin: true },
+      '/api/basic_location':
+      { target: 'http://nuxt-api.local:8888/api/basic_location',pathRewrite: {'^/api/basic_location': ''},  changeOrigin: true },
   },
 
   router: {

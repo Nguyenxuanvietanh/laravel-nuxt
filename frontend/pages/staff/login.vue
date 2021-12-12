@@ -23,8 +23,6 @@
         </b-field>
     <b-button type="is-primary" @click="login">Login</b-button>
     </section>
-
-
   </div>
 </template>
 
@@ -40,11 +38,8 @@
     },
     methods: {
       login() {
-        console.log("login:");
-        console.log(this.form);
         this.$axios.$post('/api/login', this.form)
           .then((res) => {
-console.log(res);
             this.$store.dispatch('setToken', {token: res.data.token,expiresIn:6000 });
             this.$router.push({name: 'index'});
           })

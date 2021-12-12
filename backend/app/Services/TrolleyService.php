@@ -16,14 +16,6 @@ class TrolleyService
     public function currentLocation()
     {
         $response = [];
-        // $cache_key = 'current_location';
-        // if(Cache::get($cache_key)){
-        //     $response = Cache::get($cache_key);
-        // } else {
-        //     $endpoint = '/trolley';
-        //     $response = $this->apiGateway($endpoint);
-        //     Cache::put($cache_key, $response);
-        // }
         $endpoint = '/trolley';
         $response = $this->apiGateway($endpoint);
         if($response && !empty($response['response'])){
@@ -41,14 +33,8 @@ class TrolleyService
     public function itemCurrentLocation($slug)
     {
         $response = [];
-        $cache_key = "current_location_$slug";
-        if(Cache::get($cache_key)){
-            $response = Cache::get($cache_key);
-        } else {
-            $endpoint = "/trolley/{$slug}";
-            $response = $this->apiGateway($endpoint);
-            Cache::put($cache_key, $response);
-        }
+        $endpoint = "/trolley/{$slug}";
+        $response = $this->apiGateway($endpoint);
 
         if($response && !empty($response['response'])){
             $response = $response['response'];
@@ -80,17 +66,9 @@ class TrolleyService
      */
     public function basicLocation()
     {
-        $response     = [];
-        // $cache_key    = "basic_location";
-        // if(Cache::get($cache_key)){
-        //     $response = Cache::get($cache_key);
-        // } else {
-        //     $endpoint = '/basic_location';
-        //     $response = $this->apiGateway($endpoint);
-        //     Cache::put($cache_key, $response);
-        // }
-        $endpoint = '/basic_location';
-        $response = $this->apiGateway($endpoint);
+        $response   = [];
+        $endpoint   = '/basic_location';
+        $response   = $this->apiGateway($endpoint);
         if($response && !empty($response['response'])){
             $response = $response['response'];
         }
@@ -105,14 +83,10 @@ class TrolleyService
      */
     public function itemBasicLocation($slug)
     {
-        $response     = [];
-        $cache_key    = "basic_location_$slug";
-        if(Cache::get($cache_key)){
-            $response = Cache::get($cache_key);
-        } else {
-            $endpoint = "/basic_location/{$slug}";
-            $response = $this->apiGateway($endpoint);
-            Cache::put($cache_key, $response);
+        $endpoint = "/basic_location/{$slug}";
+        $response = $this->apiGateway($endpoint);
+        if($response && !empty($response['response'])){
+            $response = $response['response'];
         }
     
         return $response;
@@ -125,7 +99,6 @@ class TrolleyService
      */
     public function postBasicLocation(Request $request)
     {
-        $response                   = [];
         $params                     = [];
         $input                      = $request->all();
         $params['name']             = $input['name'];
@@ -136,6 +109,19 @@ class TrolleyService
         $endpoint                   = "/basic_location";
 
         $response                   = $this->apiGateway($endpoint, 'POST', $params);
+    
+        return $response;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteBasicLocation($slug)
+    {
+        $endpoint = "/basic_location/{$slug}";
+        $response = $this->apiGateway($endpoint, 'DELETE');
     
         return $response;
     }
