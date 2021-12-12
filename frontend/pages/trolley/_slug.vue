@@ -19,13 +19,15 @@
          console.log(this.$route.fullPath);
         console.log(this.$route.params.slug);
       },
-      async  asyncData({route, params}) {
+      async  asyncData({route, params,$axios }) {
             console.log("asyncData");
                console.log(route.params.slug);
-           const trolley = await fetch(`https://pu6xhlqn96.execute-api.ap-northeast-1.amazonaws.com/v1/trolley/`+route.params.slug)
-      .then(res => res.json());
-console.log(trolley);
-    return {trolley:trolley.response };
+                const trolley = await $axios.$get(`https://pu6xhlqn96.execute-api.ap-northeast-1.amazonaws.com/v1/trolley/`+route.params.slug)
+  return { trolley:trolley.response }
+//            const trolley = await fetch(`https://pu6xhlqn96.execute-api.ap-northeast-1.amazonaws.com/v1/trolley/`+route.params.slug)
+//       .then(res => res.json());
+// console.log(trolley);
+//     return {trolley:trolley.response };
 
             // if (process.server) {
             //     //use route object
