@@ -23,10 +23,10 @@
   </b-card> -->
 
 
-      <div class="column" @click="detail(trolley.slug)"><div class="card"><header class="card-header"><p class="card-header-title has-text-grey">
+      <div class="column is-one-quarter" @click="detail(trolley.slug)"><div class="card"><header class="card-header"><p class="card-header-title has-text-grey">
        {{trolley.slug}}
       </p></header> <div class="card-content"><div class="content has-text-centered"><span class="icon has-text-primary is-large"><i class="mdi mdi-alert-decagram mdi-48px"></i></span></div></div> <footer class="card-footer"><div class="card-footer-item"><span>
-        {{ trolley.current_location }}
+        {{ trolley.current_location }}&nbsp;
     </span></div></footer></div></div>
 
 </template>

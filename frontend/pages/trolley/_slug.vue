@@ -21,7 +21,7 @@
           <footer class="card-footer">
             <div class="card-footer-item">
               <span>
-                {{ trolley.current_location }}
+                {{ trolley.current_location }}&nbsp;
               </span>
             </div>
           </footer>

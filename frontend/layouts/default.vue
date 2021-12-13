@@ -35,6 +35,10 @@
       <aside id="menu" class="column is-3 section">
         <b-menu>
           <b-menu-list>
+            <NuxtLink class="navbar-item" :to="{ name: 'index' }">
+            &nbsp;<span class="icon is-small"><i class="mdi mdi-home"></i></span>&nbsp;
+              Home
+              </NuxtLink>
             <b-menu-item icon="information-outline" label="Info"></b-menu-item>
             <b-menu-item icon="settings" active="true" expanded>
               <template #label="props">
@@ -44,6 +48,7 @@
                   :icon="props.expanded ? 'menu-up' : 'menu-down'"
                 ></b-icon>
               </template>
+
               <NuxtLink class="navbar-item" :to="{ name: 'trolley-basic' }">
                 <b-menu-item
                   icon="cellphone-link"

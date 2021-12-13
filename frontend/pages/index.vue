@@ -1,6 +1,6 @@
 <template>
   <section class="section">
-    <div class="columns is-mobile">
+    <div class="columns is-mobile is-multiline">
       <ProductCard
         v-for="(trolley, i) in trolleys"
         :key="i"
@@ -60,5 +60,8 @@ export default {
 <style>
 body {
   background: none;
+}
+.column.is-one-quarter{
+  cursor: pointer;
 }
 </style>
