@@ -21,13 +21,21 @@
           placeholder="Enter password">
             </b-input>
         </b-field>
-    <b-button type="is-primary" @click="login">Login</b-button>
+      <div class="columns">
+        <div class="column">
+          <NuxtLink class="navbar-item" :to="{ name: 'staff-register' }">Register new account</NuxtLink>
+        </div>
+        <div class="column" style="flex: inherit">
+          <b-button type="is-primary" @click="login">Login</b-button>
+        </div>
+      </div>
     </section>
   </div>
 </template>
 
 <script>
   export default {
+    layout: 'none',
     data() {
       return {
         form: {
@@ -50,3 +58,11 @@
     }
   }
 </script>
+<style>
+body {
+  font-family: "Open Sans", sans-serif;
+  height: 100vh;
+  background: url("~assets/background.jpg") 50% fixed;
+  background-size: cover;
+}
+</style>

@@ -9,30 +9,7 @@
         <a class="navbar-item" href="/">
           <img src="~assets/buefy.png" alt="Buefy" height="28" />
         </a>
-        <template v-if="isLoggedIn">
-          <NuxtLink class="navbar-item" :to="{ name: 'staff-secret' }"
-            >Secret Page</NuxtLink
-          >
-          <a
-            aria-current="page"
-            @click="logout"
-            class="navbar-item nuxt-link-exact-active nuxt-link-active"
-          >
-            Logout
-          </a>
-        </template>
-        <template v-else>
-          <NuxtLink class="navbar-item" :to="{ name: 'staff-login' }">
-            Login
-          </NuxtLink>
-          <NuxtLink class="navbar-item" :to="{ name: 'staff-register' }">
-            Register
-          </NuxtLink>
-        </template>
-
-        <div>
-
-        </div>
+        <div></div>
         <div class="navbar-burger">
           <span />
           <span />
@@ -55,7 +32,7 @@
     </nav>
 
     <section class="main-content columns">
-      <aside class="column is-3 section">
+      <aside id="menu" class="column is-3 section">
         <b-menu>
           <b-menu-list>
             <b-menu-item icon="information-outline" label="Info"></b-menu-item>
@@ -68,25 +45,30 @@
                 ></b-icon>
               </template>
               <NuxtLink class="navbar-item" :to="{ name: 'trolley-basic' }">
-              <b-menu-item icon="cellphone-link" label="Basic Location"></b-menu-item>
+                <b-menu-item
+                  icon="cellphone-link"
+                  label="Basic Location"
+                ></b-menu-item>
               </NuxtLink>
               <NuxtLink class="navbar-item" :to="{ name: 'trolley-create' }">
-              <b-menu-item icon="cash-multiple" label="Add item"></b-menu-item>
+                <b-menu-item
+                  icon="cash-multiple"
+                  label="Add item"
+                ></b-menu-item>
               </NuxtLink>
-            </b-menu-item>
-            <b-menu-item icon="account" label="My Account">
-              <b-menu-item label="Account data"></b-menu-item>
-              <b-menu-item label="Addresses"></b-menu-item>
             </b-menu-item>
           </b-menu-list>
           <b-menu-list label="Actions">
-            <b-menu-item label="Logout"></b-menu-item>
+            <b-menu-item v-if="isLoggedIn" label="Logout" @click="logout">
+            </b-menu-item>
           </b-menu-list>
         </b-menu>
       </aside>
 
-      <div class="container column is-10">
-        <Nuxt />
+      <div class="container column is-8">
+        <div class="section">
+          <Nuxt />
+        </div>
       </div>
     </section>
   </div>
@@ -130,5 +112,9 @@ export default {
   right: 0px;
   margin-right: 15px;
   top: 5px;
+}
+#menu {
+  height: 100vh;
+  background-color: #fff;
 }
 </style>

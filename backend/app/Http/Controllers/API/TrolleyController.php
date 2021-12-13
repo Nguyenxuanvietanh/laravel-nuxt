@@ -111,14 +111,13 @@ class TrolleyController extends BaseController
      */
     public function postBasicLocation(Request $request)
     {
-        $params                     = [];
         $input                      = $request->all();
         $params['name']             = $input['name'];
-        $params['slug']             = Str::slug($input['name'] . '-' . Carbon::now()->timestamp);
+        $params['slug']             = $input['slug'];
         $params['description']      = $input['description'];
         $params['size']             = $input['size'];
         $params['basic_location']   = $input['basic_location'];
-        $response                   = $this->trolleyService->postCurrentLocation($params);
+        $response                   = $this->trolleyService->postBasicLocation($params);
     
         return $this->sendResponse($response);
     }

@@ -1,5 +1,4 @@
 <template>
-  <div class="card">
     <div class="box">
       <section>
         <b-field id="input-group-1" label="Name:" label-for="input-1">
@@ -32,10 +31,9 @@
           >
           </b-input>
         </b-field>
-        <b-button type="is-primary" @click="createItem">Login</b-button>
+        <b-button type="is-primary" @click="createItem">Submit</b-button>
       </section>
     </div>
-  </div>
 </template>
 
 <script>
@@ -49,7 +47,23 @@ export default {
         size: "",
         description: "",
       },
-    };
+    }
   },
+  methods: {
+    createItem() {
+      this.$axios.$post('/api/basic_location', this.form)
+          .then((res) => {
+            this.$router.push({name: 'trolley-basic'});
+          })
+          .catch(errors => {
+            console.dir(errors);
+          });
+    }
+  }
 };
 </script>
+<style>
+body {
+  background: none;
+}
+</style>

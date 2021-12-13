@@ -2,63 +2,63 @@
   <section class="section">
     <div class="columns is-mobile">
       <ProductCard
-          v-for="(trolley, i) in trolleys"
-          :key="i"
-          :trolley="trolley"
-           @update-position="changePosition"
-        />
+        v-for="(trolley, i) in trolleys"
+        :key="i"
+        :trolley="trolley"
+        @update-position="changePosition"
+      />
     </div>
   </section>
 </template>
 
 <script>
-import Card from '~/components/Card'
-import ProductCard from '~/components/ProductCard'
+import Card from "~/components/Card";
+import ProductCard from "~/components/ProductCard";
 
 export default {
-  name: 'HomePage',
+  name: "HomePage",
 
   components: {
-    Card
+    Card,
   },
-   async asyncData({ $axios }) {
-    const trolleys = await fetch(`https://pu6xhlqn96.execute-api.ap-northeast-1.amazonaws.com/v1/trolley`)
-      .then(res => res.json());
-console.log(trolleys.response);
-    return {trolleys:trolleys.response };
+  async asyncData({ $axios }) {
+    const trolleys = await fetch(
+      `https://pu6xhlqn96.execute-api.ap-northeast-1.amazonaws.com/v1/trolley`
+    ).then((res) => res.json());
+
+    return { trolleys: trolleys.response };
   },
-   methods: {
-    changePosition(troll){
+  methods: {
+    changePosition(troll) {
       console.log(troll);
       this.isProductsDialogActive = true;
       this.selectedProducts = [];
       this.troll = troll;
     },
-     // Close products dialog.
+    // Close products dialog.
     closedDialog() {
-      console.log("closedDialog");
       this.isProductsDialogActive = false;
     },
-    submitPosition(data){
-        console.log("submitPosition");
-      console.log(data);
-     this.$axios.post('https://pu6xhlqn96.execute-api.ap-northeast-1.amazonaws.com/v1/current_location', {
-          slug: data.slug,
-          current_location: data.current_location,
-      })
-      .then(function (response) {
-        console.log("response");
-          console.log(response);
-          //  location.reload();
-      })
-      .catch(function (error) {
-         console.log("error axios");
-          //  location.reload();
+    submitPosition(data) {
+      this.$axios
+        .post(
+          "https://pu6xhlqn96.execute-api.ap-northeast-1.amazonaws.com/v1/current_location",
+          {
+            slug: data.slug,
+            current_location: data.current_location,
+          }
+        )
+        .then(function (response) {
+        })
+        .catch(function (error) {
           this.isProductsDialogActive = false;
-
-
-      });
-    }
+        });
+    },
   },
-}
+};
 </script>
+<style>
+body {
+  background: none;
+}
+</style>

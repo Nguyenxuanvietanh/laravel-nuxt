@@ -48,7 +48,6 @@ class ApiGatewayService
                 if($err){
                     $response = [
                         'status' => 0,
-                        'code'   => $code,
                         'error'  => $err
                     ];
                 } else {

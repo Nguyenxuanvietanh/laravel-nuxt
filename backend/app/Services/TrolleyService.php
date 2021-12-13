@@ -50,11 +50,10 @@ class TrolleyService
      */
     public function postCurrentLocation($request)
     {
-        $response               = [];
-        $input['imported_time'] = Carbon::now()->format('Y-m-d H:i:s');
-        $endpoint               = "/current_location";
+        $request['imported_time']   = Carbon::now()->format('Y-m-d H:i:s');
+        $endpoint                   = "/current_location";
 
-        $response               = $this->apiGateway($endpoint, 'POST', $request);
+        $response                   = $this->apiGateway($endpoint, 'POST', $request);
     
         return $response;
     }
@@ -97,12 +96,11 @@ class TrolleyService
      *
      * @return \Illuminate\Http\Response
      */
-    public function postBasicLocation(Request $request)
+    public function postBasicLocation($input)
     {
         $params                     = [];
-        $input                      = $request->all();
         $params['name']             = $input['name'];
-        $params['slug']             = Str::slug($input['name'] . '-' . Carbon::now()->timestamp);
+        $params['slug']             = $input['slug'];
         $params['description']      = $input['description'];
         $params['size']             = $input['size'];
         $params['basic_location']   = $input['basic_location'];

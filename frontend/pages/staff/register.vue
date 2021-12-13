@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <section>
-      <b-field id="input-name" label="name:" label-for="input-name">
+      <b-field id="input-name" label="Name:" label-for="input-name">
         <b-input
           id="input-name"
           v-model="form.name"
@@ -42,13 +42,22 @@
         >
         </b-input>
       </b-field>
-      <b-button type="is-primary" @click="register">Register</b-button>
+      
+      <div class="columns">
+        <div class="column">
+          <NuxtLink class="navbar-item" :to="{ name: 'staff-login' }">Back to login page</NuxtLink>
+        </div>
+        <div class="column" style="flex: inherit">
+          <b-button type="is-primary" @click="register">Register</b-button>
+        </div>
+      </div>
     </section>
   </div>
 </template>
 
 <script>
 export default {
+  layout: 'none',
   data() {
     return {
       form: {
@@ -79,3 +88,11 @@ export default {
   },
 };
 </script>
+<style>
+body {
+  font-family: "Open Sans", sans-serif;
+  height: 100vh;
+  background: url("~assets/background.jpg") 50% fixed;
+  background-size: cover;
+}
+</style>
