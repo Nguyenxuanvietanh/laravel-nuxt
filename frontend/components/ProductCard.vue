@@ -23,9 +23,24 @@
   </b-card> -->
 
 
-      <div class="column is-one-quarter" @click="detail(trolley.slug)"><div class="card"><header class="card-header"><p class="card-header-title has-text-grey">
-       {{trolley.slug}}
-      </p></header> <div class="card-content"><div class="content has-text-centered"><span class="icon has-text-primary is-large"><i class="mdi mdi-alert-decagram mdi-48px"></i></span></div></div> <footer class="card-footer"><div class="card-footer-item"><span>
+      <div class="column is-one-quarter "   @click="detail(trolley.slug)">
+        <div class="card" v-bind:class="getClass()">
+        <header class="card-header">
+        <p class="card-header-title has-text-grey">
+       {{trolley.slug}} ({{trolley.basic_location}})
+      </p></header> <div class="card-content">
+        <div class="content has-text-centered">
+          <span class="icon has-text-primary is-large"><i class="mdi mdi-alert-decagram mdi-48px"></i></span>
+        </div>
+          <div class="content has-text-centered">
+            {{trolley.size}}
+        </div>
+          <div class="content has-text-centered">
+            {{trolley.description}}
+        </div>
+        </div>
+        <footer class="card-footer">
+          <div class="card-footer-item"><span>
         {{ trolley.current_location }}&nbsp;
     </span></div></footer></div></div>
 
@@ -44,18 +59,22 @@ export default {
     };
   },
   methods: {
-    selectPosition(){
-        this.$emit("update-position", {
-          "slug":this.trolley.slug,
-          "current_location": this.trolley.current_location,
-        });
-    },
+    // selectPosition(){
+    //     this.$emit("update-position", {
+    //       "slug":this.trolley.slug,
+    //       "current_location": this.trolley.current_location,
+    //     });
+    // },
     detail(slug){
-      console.log("detail");
       this.$router.push({
           path: `/trolley/${slug}`,
       });
+    },
+    getClass(){
+    return {
+      'highlight': this.trolley.current_location !== this.trolley.basic_location,
     }
+  }
   }
 };
 </script>
@@ -86,5 +105,9 @@ export default {
 .general label input {
   visibility: hidden !important;
   position: absolute !important;
+}
+.card.highlight{
+  border: 1px solid #000;
+  background-color: antiquewhite;
 }
 </style>

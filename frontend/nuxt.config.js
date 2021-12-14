@@ -37,11 +37,16 @@ export default {
   },
   proxy: {
       '/api/login':
-      { target: 'http://nuxt-api.local:8888/api/login',pathRewrite: {'^/api/login': ''},  changeOrigin: true },
+      { target: 'http://enuxt.local/api/login',pathRewrite: {'^/api/login': ''},  changeOrigin: true },
       '/api/register':
-      { target: 'http://nuxt-api.local:8888/api/register',pathRewrite: {'^/api/register': ''},  changeOrigin: true },
+      { target: 'http://enuxt.local/api/register',pathRewrite: {'^/api/register': ''},  changeOrigin: true },
+
       '/api/basic_location':
-      { target: 'http://nuxt-api.local:8888/api/basic_location',pathRewrite: {'^/api/basic_location': ''},  changeOrigin: true },
+      { target: 'http://enuxt.local/api/basic_location',pathRewrite: {'^/api/basic_location': ''},  changeOrigin: true },
+
+      '/api/current_location':
+      { target: 'http://enuxt.local/api/current_location',pathRewrite: {'^/api/current_location': ''},  changeOrigin: true },
+      '/api/trolleys': { target: 'http://enuxt.local/api/trolleys',pathRewrite: {'^/api/trolleys': ''},  changeOrigin: true },
   },
 
   router: {
@@ -61,6 +66,6 @@ export default {
   build: {
   },
   server: {
-    port: 3000 // default: 3000
+    port: 8000 // default: 3000
   }
 }

@@ -16,19 +16,7 @@
           <span />
         </div>
       </div>
-      <section class="wrap-search">
-        <b-field label="">
-          <b-autocomplete
-            rounded
-            placeholder="e.g. jQuery"
-            icon="magnify"
-            clearable
-            @select="(option) => (selected = option)"
-          >
-            <template #empty>No results found</template>
-          </b-autocomplete>
-        </b-field>
-      </section>
+
     </nav>
 
     <section class="main-content columns">

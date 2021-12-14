@@ -45,15 +45,13 @@
       }
     },
     methods: {
-      login() {
-        this.$axios.$post('/api/login', this.form)
-          .then((res) => {
-            this.$store.dispatch('setToken', {token: res.data.token,expiresIn:6000 });
-            this.$router.push({name: 'index'});
-          })
-          .catch(errors => {
-            console.dir(errors);
-          });
+     async login() {
+       const result = await this.$axios.$post(
+      `/api/login`,this.form
+    );
+      this.$store.dispatch('setToken', {token: result.data.token,expiresIn:6000 });
+      this.$router.push({name: 'index'});
+
       },
     }
   }
