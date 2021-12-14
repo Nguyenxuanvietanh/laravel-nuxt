@@ -62,7 +62,9 @@ class TrolleyController extends BaseController
      */
     public function itemCurrentLocation($slug)
     {
-        $response = $this->trolleyService->itemCurrentLocation($slug);
+        $basic_location     = (array) $this->trolleyService->itemBasicLocation($slug);
+        $current_location   = (array) $this->trolleyService->itemCurrentLocation($slug);
+        $response           = array_merge($basic_location, $current_location);
     
         return $this->sendResponse($response, 'Trolley retrieved successfully.');
     }
