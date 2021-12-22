@@ -27,7 +27,6 @@
             &nbsp;<span class="icon is-small"><i class="mdi mdi-home"></i></span>&nbsp;
               Home
               </NuxtLink>
-            <b-menu-item icon="information-outline" label="Info"></b-menu-item>
             <b-menu-item icon="settings" active="true" expanded>
               <template #label="props">
                 Trolley

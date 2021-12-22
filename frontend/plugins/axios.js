@@ -11,8 +11,13 @@ export default function ({ $axios, $auth, redirect, store,app }) {
     });
 
     $axios.onError((error) => {
+      console.log("onError");
       if (error.response.status === 500) {
         redirect("/error");
+      }
+      if (error.response.status === 404) {
+        console.log("errorr");
+        redirect("/errorxxx");
       }
     });
   }

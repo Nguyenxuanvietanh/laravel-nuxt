@@ -2,6 +2,7 @@ import cookies from 'js-cookie';
 
 export const state = () => ({
   token: null,
+  loading: false
 });
 
 export const mutations = {
@@ -11,6 +12,9 @@ export const mutations = {
 
   REMOVE_TOKEN(state) {
     state.token = null;
+  },
+  SET_LOADING(state){
+    state.loading = state;
   }
 };
 
@@ -54,5 +58,8 @@ export const actions = {
     this.$axios.setToken(false);
     this.$cookies.remove('x-access-token');
     commit('REMOVE_TOKEN');
+  },
+  setLoading({commit},{value}){
+    commit('SET_LOADING', value);
   }
 };

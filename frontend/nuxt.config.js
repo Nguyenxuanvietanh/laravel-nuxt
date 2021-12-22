@@ -66,6 +66,7 @@ export default {
   build: {
   },
   server: {
+    host: "192.168.88.25",
     port: 8000 // default: 3000
   }
 }

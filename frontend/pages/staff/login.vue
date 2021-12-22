@@ -46,11 +46,29 @@
     },
     methods: {
      async login() {
-       const result = await this.$axios.$post(
+
+       try {
+   const result = await this.$axios.$post(
       `/api/login`,this.form
     );
+     console.log("result");
+    console.log(result);
+
       this.$store.dispatch('setToken', {token: result.data.token,expiresIn:6000 });
+      if(result.data.token){
+           console.log("toeknn");
+        console.log(result.data.token);
       this.$router.push({name: 'index'});
+      }
+} catch (error) {
+ this.$buefy.dialog.alert('Invalid Username and password ')
+
+  // expected output: ReferenceError: nonExistentFunction is not defined
+  // Note - error messages will vary depending on browser
+}
+
+
+
 
       },
     }
