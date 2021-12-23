@@ -83,28 +83,15 @@ export default {
           }
         })
         .catch((errors) => {
-            console.dir("errors sxx");
-            var msgerror = "";
-          //   for(key in errors.response.data.data) {
-          //     if(data.hasOwnProperty(key)) {
-          //         msgerror = data[key];
-          //         //do something with value;
-          //     }
-          // }
-// var value = { "aaa": "111", "bbb": "222", "ccc": "333" };
-// var blkstr = [];
-// $.each(errors.response.data.data, function(idx2,val2) {
-//   var str = idx2 + ":" + val2;
-//   blkstr.push(str);
-// });
-
-// for(var i=0; i< errors.response.data.data.length; i++){
-
-// }
-             this.$buefy.dialog.alert("invalid information");
+          let err = errors.response.data.data
+          let error = err[Object.keys(err)[0]]
+          this.$buefy.toast.open({
+                    duration: 5000,
+                    message: error,
+                    type: 'is-danger'
+                })
         });
       } catch (error) {
-        console.log(errors);
       }
 
     },
