@@ -79,7 +79,7 @@ export default {
               token: data.token,
               expiresIn: 60,
             });
-            this.$router.push({ name: "staff-secret" });
+            this.$router.push({ name: "index" });
           }
         })
         .catch((errors) => {
