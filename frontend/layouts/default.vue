@@ -27,7 +27,7 @@
             &nbsp;<span class="icon is-small"><i class="mdi mdi-home"></i></span>&nbsp;
               Home
               </NuxtLink>
-            <b-menu-item icon="settings" active="true" expanded>
+            <b-menu-item icon="settings" :active="isActive" expanded>
               <template #label="props">
                 Trolley
                 <b-icon
@@ -35,19 +35,18 @@
                   :icon="props.expanded ? 'menu-up' : 'menu-down'"
                 ></b-icon>
               </template>
-
-              <NuxtLink class="navbar-item" :to="{ name: 'trolley-basic' }">
                 <b-menu-item
                   icon="cellphone-link"
                   label="Basic Location"
-                ></b-menu-item>
-              </NuxtLink>
-              <NuxtLink class="navbar-item" :to="{ name: 'trolley-create' }">
+                  @click="basicLocation"
+                >
+                </b-menu-item>
                 <b-menu-item
                   icon="cash-multiple"
                   label="Add item"
-                ></b-menu-item>
-              </NuxtLink>
+                  @click="createBasicLocation"
+                >
+                </b-menu-item>
             </b-menu-item>
           </b-menu-list>
           <b-menu-list label="Actions">
@@ -71,6 +70,7 @@ export default {
   data() {
     return {
       labelPosition: "on-border",
+      isActive: true
     };
   },
 
@@ -95,6 +95,12 @@ export default {
       this.$router.push({ name: "staff-login" });
       location.reload();
     },
+    basicLocation() {
+      this.$router.push({ name: "trolley-basic" });
+    },
+    createBasicLocation() {
+      this.$router.push({ name: "trolley-create" });
+    }
   },
 };
 </script>
